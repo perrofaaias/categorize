@@ -71,6 +71,6 @@ Clone the repository, install dependencies, configure, and run the app.
 
 3. Run the app:
    ```bash
-   # Make sure you have an internet connection
+   # Make sure you have internet access to see the icons
    node index.js
    ```
