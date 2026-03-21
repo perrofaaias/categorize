@@ -6,8 +6,6 @@ Built with Express, it allows you to organize images into categories and compres
 
 The app configuration is done in [`main.js`](https://github.com/perrofaaias/categorize/blob/main/public/main.js).
 
-> This project is considered complete and will be archived. No further updates are planned.
-
 ## Categorization
 
 Images are displayed in a 9:16 preview by default. Double-tap the screen to view the image in full screen, and double-tap again to return to the preview.
