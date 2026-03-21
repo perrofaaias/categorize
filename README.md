@@ -8,6 +8,12 @@ The app configuration is done in [`main.js`](https://github.com/perrofaaias/cate
 
 > This project is considered complete and will be archived. No further updates are planned.
 
+## Categorization
+
+Images are displayed in a 9:16 preview by default. Double-tap the screen to view the image in full screen, and double-tap again to return to the preview.
+
+To label an image, tap the appropriate category button. After a selection is made, the next image is displayed automatically, allowing for fast and continuous labeling.
+
 ## Installation
 
 Clone the repository, install dependencies, configure, and run the app.

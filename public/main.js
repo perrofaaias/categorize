@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     categorized[namespace] = [];
     createStandardButton(name, () => {
       setContentCategory(currentContentName, namespace);
-      exposeCurrentImage();
+      exposeCurrentImage(1);
     });
   });
   createStandardButton("Download", downloadCategorizedZip);
