@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categorize</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1 class="title"><i data-lucide="library"></i> Categorize</h1>
+  <p>Categorize images.</p>
+
+  <div class="content">
+    <button id="previous" class="icon">
+      <i data-lucide="arrow-left"></i>
+    </button>
+    <div class="image-container">
+      <img src="" alt="Image preview" id="image" class="image">
+      <p class="label" id="info"></p>
+    </div>
+    <button id="next" class="icon" disabled>
+      <i data-lucide="arrow-right"></i>
+    </button>
+  </div>
+
+  <div id="buttons" class="buttons"></div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="main.js"></script>
+</body>
+</html>
