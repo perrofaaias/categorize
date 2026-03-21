@@ -1,24 +1,21 @@
 #!/bin/bash
 
-DIR="./public/files"
-OUT="./public/data.json"
+DIR="public/files"
+OUT="$DIR/data.json"
 
-if [ -z "$OUT" ]; then
-  rm "$OUT"
-fi
+rm -f "$OUT"
+
+files=()
+while IFS= read -r file; do
+  [[ "$file" == "data.json" ]] && continue
+  files+=("$file")
+done < <(find "$DIR" -maxdepth 1 -type f -printf '%f\n')
 
 {
   printf '[\n'
-  first=1
-  find "$DIR" -maxdepth 1 -type f -printf '%f\n' | while IFS= read -r file; do
-    file_escaped=$(printf '%s' "$file" | sed 's/"/\\"/g')
-    
-    if [ $first -eq 1 ]; then
-      printf '  "%s"' "$file_escaped"
-      first=0
-    else
-      printf ',\n  "%s"' "$file_escaped"
-    fi
+  for i in "${!files[@]}"; do
+    printf '  "%s"' "${files[i]}"
+    [[ $i -lt $((${#files[@]} - 1)) ]] && printf ',\n'
   done
   printf '\n]\n'
 } > "$OUT"
