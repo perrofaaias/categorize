@@ -28,8 +28,11 @@ const buttonNext = document.getElementById("next");
 const files = [];
 
 //region Helper functions
-function createStandardButton(text, click) {
+function createStandardButton(text, click, style) {
   const button = document.createElement("button");
+
+  if (style) button.classList.add(style);
+
   button.textContent = text;
   button.onclick = () => { click(); };
 
@@ -148,7 +151,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       exposeCurrentImage(1);
     });
   });
-  createStandardButton("Download", downloadCategorizedZip);
+  createStandardButton("Download", downloadCategorizedZip, "stroked");
 
   exposeCurrentImage();
 });

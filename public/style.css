@@ -56,6 +56,12 @@ button.icon {
   padding: 0;
 }
 
+button.stroked {
+  background-color: transparent;
+  border: solid 2px hsl(0 0 0);
+  color: hsl(0 0 0);
+}
+
 button:disabled {
   background-color: transparent;
   border: solid 2px hsl(0 0 0);
