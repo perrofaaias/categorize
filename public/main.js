@@ -18,6 +18,7 @@ let currentContentCategory = undefined;
 
 //region Helper variables
 const buttonsContainer = document.getElementById("buttons");
+const fullscreenImage = document.getElementById("fullscreen");
 const imageElement = document.getElementById("image");
 const imageInformation = document.getElementById("info");
 
@@ -35,7 +36,7 @@ function createStandardButton(text, click) {
   buttonsContainer.appendChild(button);
 }
 
-async function fetchData() {
+async function fetchJsonData() {
   const response = await fetch("data.json");
   if (!response.ok) throw 'File "data.json" was not found.';
   return await response.json();
@@ -99,6 +100,7 @@ function exposeCurrentImage(increment = 0) {
 
   const imageUrl = `files/${currentContentName}`;
   imageElement.src = imageUrl;
+  fullscreenImage.src = imageUrl;
 
   const index = `${currentContentIndex + 1}/${files.length}`;
   const [name, namespace] = getContentCategoryPair(currentContentName);
@@ -106,7 +108,23 @@ function exposeCurrentImage(increment = 0) {
   imageInformation.textContent = `${index} — ${name ?? "Uncategorized"}`;
 }
 
+function toggleFullscreenImage() {
+  const enable = fullscreenImage.hidden;
+  const domBodyClasses = document.body.classList;
+
+  if (enable) {
+    domBodyClasses.add("fullscreen");
+  } else {
+    domBodyClasses.remove("fullscreen");
+  }
+
+  fullscreenImage.hidden = !enable;
+}
+
 //region DOM elements setup
+fullscreenImage.ondblclick = () => toggleFullscreenImage();
+
+imageElement.ondblclick = fullscreenImage.ondblclick;
 imageElement.onload = () => {
   canChangeIndex = true;
 }
@@ -116,7 +134,7 @@ buttonNext.onclick = () => exposeCurrentImage(1);
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    Array.from(await fetchData()).forEach(file => {
+    Array.from(await fetchJsonData()).forEach(file => {
       files.push(file);
     });
   } catch (err) {
