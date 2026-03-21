@@ -4,11 +4,7 @@ if (lucide) {
 }
 
 //region Categorization setup
-const categories = [
-  ["Category #1", "cat1"],
-  ["Category #2", "cat2"],
-  ["Category #3", "cat3"],
-];
+let categories = [];
 const categorized = {};
 
 let canChangeIndex = true;
@@ -17,6 +13,9 @@ let currentContentName = undefined;
 let currentContentCategory = undefined;
 
 //region Helper variables
+const dataJsonPath = "files/data.json";
+const categoriesJsonPath = "categories.json";
+
 const buttonsContainer = document.getElementById("buttons");
 const fullscreenImage = document.getElementById("fullscreen");
 const imageElement = document.getElementById("image");
@@ -25,7 +24,7 @@ const imageInformation = document.getElementById("info");
 const buttonPrevious = document.getElementById("previous");
 const buttonNext = document.getElementById("next");
 
-const files = [];
+let files = [];
 
 //region Helper functions
 function createStandardButton(text, click, style) {
@@ -39,9 +38,9 @@ function createStandardButton(text, click, style) {
   buttonsContainer.appendChild(button);
 }
 
-async function fetchJsonData() {
-  const response = await fetch("data.json");
-  if (!response.ok) throw 'File "data.json" was not found.';
+async function fetchJsonData(path) {
+  const response = await fetch(path);
+  if (!response.ok) throw `${response.status} (${response.statusText})`;
   return await response.json();
 }
 
@@ -137,9 +136,8 @@ buttonNext.onclick = () => exposeCurrentImage(1);
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    Array.from(await fetchJsonData()).forEach(file => {
-      files.push(file);
-    });
+    categories = await fetchJsonData(categoriesJsonPath);
+    files = await fetchJsonData(dataJsonPath);
   } catch (err) {
     console.error("Error fetching data.", err);
   }
