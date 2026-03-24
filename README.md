@@ -4,7 +4,7 @@ A simple personal app for categorizing images.
 
 Built with Express, it allows you to organize images into categories and compress them into ZIP files. Uncategorized files are ignored.
 
-The configuration is done manually via `categories.json` and `parse-data.sh`. See [Categorization](#categorization).
+The configuration is done manually via `categories.json` and `list-files.js`. See [Categorization](#categorization).
 
 ## Categorization
 
@@ -14,7 +14,7 @@ Upon download, the categorized files are compressed into a ZIP file and separate
 
 ### Configuration
 
-It's known that manually listing each file is laborious, so run `parse-data.sh`. Place all the desired image files inside `public/files` and run `parse-data.sh` (ensure you are in the project root when running).
+It's known that manually listing each file is laborious, so run `list-files.js`. Place all the desired image files inside `public/files` and run `list-files.js` and let it list all files for you.
 
 For the categorization part, modify `public/categories.json` following this scheme:
 
@@ -63,7 +63,7 @@ Clone the repository, install dependencies, configure, and run the app.
    
    # From the project root directory,
    # run the script to generate data.json entries
-   ./parse-data.sh
+   node list-files.js
 
    # Edit public/categories.json with your preferred text editor
    notepad.exe public/categories.json
